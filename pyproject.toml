@@ -1,0 +1,17 @@
+[project]
+name = "morals"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.3.3",
+    "torch>=2.9.0",
+    "transformers>=4.57.1",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.1.1",
+    "ruff>=0.14.4",
+]
