@@ -103,6 +103,7 @@ def prepare_compute_metrics(label_names: list[str]):
                 )
 
         return metrics
+
     return compute_metrics
 
 
@@ -111,7 +112,9 @@ class WeightedTrainer(Trainer):
         super().__init__(*args, **kwargs)
         self.class_weights = class_weights
 
-    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
+    def compute_loss(
+        self, model, inputs, return_outputs=False, num_items_in_batch=None
+    ):
         labels = inputs.get("labels")
         outputs = model(**inputs)
         logits = outputs.get("logits")
