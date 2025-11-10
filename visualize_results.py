@@ -5,7 +5,7 @@ import torch
 from captum.attr import LayerIntegratedGradients, visualization
 
 
-def plot_radar(probs: list[float], labels: list[str]) -> None:
+def plot_radar(probs: list[float], labels: list[str]) -> plt.Axes:
     """
     Plots a radar chart with all morals and corresponding probabilities.
 
@@ -42,7 +42,7 @@ def plot_radar(probs: list[float], labels: list[str]) -> None:
     ax.set_rlabel_position(180 / num_val)
 
     ax.set_title("Distribution of the answer", va="bottom")
-    plt.show()
+    return ax
 
 
 def visualize_token_importance(
@@ -128,4 +128,4 @@ def visualize_token_importance(
             )
             vis_record_l.append(vis_record)
 
-    _ = visualization.visualize_text(vis_record_l)
+    return visualization.visualize_text(vis_record_l)
