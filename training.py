@@ -93,7 +93,7 @@ def prepare_compute_metrics(label_names: list[str]):
         precisions = precision_score(y_true=labels, y_pred=pred, average=None)
         f1_scores = f1_score(y_true=labels, y_pred=pred, average=None)
         for i, label in enumerate(label_names):
-            if label in ("Non-Moral", "Thin Morality"):
+            if label not in ("Non-Moral", "Thin Morality"):
                 metrics.update(
                     {
                         f"recall_{label}": recalls[i],
@@ -145,10 +145,10 @@ def train(dataset_path: str, model_name: str, output_path: str) -> None:
     args = TrainingArguments(
         output_dir="output",
         eval_strategy="steps",
-        eval_steps=100,
-        max_steps=100,
-        per_device_train_batch_size=8,
-        per_device_eval_batch_size=8,
+        eval_steps=500,
+        # max_steps=100,
+        per_device_train_batch_size=16,
+        per_device_eval_batch_size=16,
         num_train_epochs=3,
         seed=0,
         load_best_model_at_end=True,
